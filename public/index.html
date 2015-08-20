@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="contApp">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>App</title>
+	<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container" ng-controller="appController">
+	<div class="jumbotron">
+		<p>
+		<div class="panel panel-default">
+		  <!-- Default panel contents -->
+		  <div class="panel-heading">Lista de Contatos</div>
+		  <div class="panel-body">
+		    <button class="btn btn-primary" ng-click="Add()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> add contato</button>
+		  </div>
+
+		  <!-- Table -->
+		  <table class="table table-striped">
+		    <thead>
+	          <tr>
+	            <th>Name</th>
+	            <th>Email</th>
+	            <th>Celular</th>
+	            <th>Ação</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	        	<tr ng-if="showEdit">
+	        		<td><input class="form-control" ng-model="contato.nome"></td>
+	        		<td><input class="form-control" ng-model="contato.email"></td>
+	        		<td><input class="form-control" ng-model="contato.celular"></td>
+	        		<td>
+	        			<button ng-click="addContato(contato)" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+	        			-
+	        			<button class="btn btn-info" ng-click="update()"><span class="glyphicon glyphicon-refresh"></span></button>
+	        		</td>
+	        		
+	        	</tr>
+	        	<tr ng-repeat="pessoa in pessoas">
+		        	<td>{{pessoa.nome}}</td>
+		        	<td>{{pessoa.email}}</td>
+		        	<td>{{pessoa.celular}}</td>
+		        	<td>
+		        		<button class="btn btn-warning" ng-click="edite(pessoa._id)"><span class="glyphicon glyphicon-pencil"></span></button>
+		        		-
+		        		<button class="btn btn-danger" ng-click="remove(pessoa._id)"><span class="glyphicon glyphicon-trash"></span></button>
+		        	</td>
+		        	
+	        	</tr>
+	        </tbody>
+
+		  </table>
+		</div>
+		</p>
+	</div>	
+</div>
+
+<script src="js/angular.js"></script>
+<script src="controllers/controller.js"></script>
+</body>
+</html>
